@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="free_shipping_bar" translate="label" sortOrder="10">
+            <label>Codem</label>
+        </tab>
+        <section id="free_shipping" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Free Shipping Bar</label>
+            <tab>free_shipping_bar</tab>
+            <resource>Codem_FreeShipping::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="initial_message" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Initial Message</label>
+                    <comment>Type %1 for the location where you display the free shipping amount.</comment>
+                </field>
+                <field id="intermediate_message" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Intermediate Message</label>
+                    <comment>Type %1 for the location where you display difference between Free Shipping amount and subtotal amount</comment>
+                </field>
+                <field id="success_message" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success Message</label>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,40 @@
+<?php declare(strict_types=1);
+
+use Codem\FreeShipping\ViewModel\StoreDetails;
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+/** @var StoreDetails $storeDetails */
+$storeDetails = $block->getStoreDetailsViewModel();
+?>
+
+<!--Binding the Free shipping message in the container using Ko JS-->
+
+<div data-bind="scope: 'exampleScope'">
+    <!-- ko template: getTemplate()   --> <!--  /ko  -->
+
+</div>
+
+<!--Sending Configuration Values to free_shipping.js -->
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "exampleScope": {
+                        "component": "Codem_FreeShipping/js/free_shipping",
+                        "template": "Codem_FreeShipping/free_shipping",
+                        "config": {
+                        "current_currency_symbol" : "<?= $storeDetails->getStoreCurrencySymbol() ?>",
+                        "min_price": <?= $storeDetails->getFreeShippingAmount() ?>,
+                        "initial_message" : "<?= $storeDetails->initialMessage() ?>",
+                        "intermediate_message" : "<?= $storeDetails->intermediateMessage() ?>",
+                        "success_message" : "<?= $storeDetails->successMessage() ?>"
+                    }
+                    }
+                }
+            }
+        }
+    }
+</script>
