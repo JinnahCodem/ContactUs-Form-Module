@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Codem_ContactUs::menu"
+             title="ContactUs" module="Codem_ContactUs"
+             sortOrder="10"
+             resource="Magento_Backend::content"
+        />
+        <!-- START: new node -->
+        <add id="Codem_ContactUs::menu_item"
+             title="Form Grid" module="Codem_ContactUs"
+             sortOrder="10" parent="Codem_ContactUs::menu"
+             action="contactusbackend/index/index"
+             resource="Codem_ContactUs::menu_item"
+        />
+        <!-- END:   new node -->
+
+    </menu>
+</config>

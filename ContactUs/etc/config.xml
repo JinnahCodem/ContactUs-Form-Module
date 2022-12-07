@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+            <captcha translate="label">
+                <frontend>
+                    <areas>
+                        <contactus_custom_form>
+                            <label>ContactUs Custom Form</label>
+                        </contactus_custom_form>
+                    </areas>
+                </frontend>
+            </captcha>
+        <customer>
+            <captcha>
+                <always_for>
+                    <contactus_custom_form>1</contactus_custom_form>
+                </always_for>
+            </captcha>
+        </customer>
+    </default>
+</config>
