@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
 namespace Codem\ContactUs\Block\Adminhtml\Lists\Edit\Buttons;
 
 use Magento\Backend\Block\Widget\Context;

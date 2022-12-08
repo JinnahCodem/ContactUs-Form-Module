@@ -1,5 +1,9 @@
 <?php declare(strict_types=1);
 
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
 use Codem\ContactUs\ViewModel\ContactUsDetails;
 use Codem\ContactUs\Block\Customer\Contactus;
 use Magento\Framework\Escaper;
@@ -18,7 +22,7 @@ $contactUs = $block->getData('view_model');
 ?>
 
 
-<form class="form contact" action="<?= $contactUs->getFormAction(); ?>" id="contact-form" method="post" data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
+<form class="contact" action="<?= $contactUs->getFormAction(); ?>" id="contact-form" method="post" data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
       data-mage-init='{"validation":{}}'>
     <fieldset class="fieldset">
         <div class="field name required">
@@ -30,13 +34,27 @@ $contactUs = $block->getData('view_model');
         <div class="field email required">
             <label class="label" for="email"><span><?= $escaper->escapeHtml(__('Email')) ?></span></label>
             <div class="control">
-                <input name="email" id="email" title="Email" value="" class="input-text" type="email" data-validate="{required:true}" data-mage-init='{"mage/trim-input":{}}'/>
+                <input name="email"
+                       id="email"
+                       title="Email"
+                       value=""
+                       class="input-text"
+                       type="email"
+                       data-validate="{required:true, 'validate-email':true}"
+                       data-mage-init='{"mage/trim-input":{}}'
+                />
             </div>
         </div>
-        <div class="field phone_number required">
-            <label class="label" for="phone_number"><span><?= $escaper->escapeHtml(__('Phone Number')) ?></span></label>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?= $escaper->escapeHtml(__('Phone Number')) ?></span></label>
             <div class="control">
-                <input name="phone_number" id="phone_number" title="Phone Number" value="" class="input-text" type="tel" data-validate="{required:true}"/>
+                <input name="phone_number"
+                       id="phone_number"
+                       title="Phone Number"
+                       value=""
+                       class="input-text"
+                       type="tel"
+                       data-validate="{required:true, 'validate-number':true}"/>
             </div>
         </div>
         <div class="field comment required">
@@ -52,10 +70,8 @@ $contactUs = $block->getData('view_model');
             <button type="submit" title="Submit" class="action submit primary">
                 <span>Submit</span>
             </button>
-            <br><br><br><br>
         </div>
     </div>
-
-
 </form>
+
 

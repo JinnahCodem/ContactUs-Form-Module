@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
 namespace Codem\ContactUs\Model\Contacts;
 
 use Codem\ContactUs\Model\Contacts;

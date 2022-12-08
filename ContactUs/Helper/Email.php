@@ -1,8 +1,13 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
 namespace Codem\ContactUs\Helper;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Escaper;
@@ -42,6 +47,11 @@ class Email extends AbstractHelper
     protected $timezoneInterface;
 
     /**
+     * @var ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
      * @param Context $context
      * @param StateInterface $inlineTranslation
      * @param Escaper $escaper
@@ -53,7 +63,8 @@ class Email extends AbstractHelper
         StateInterface $inlineTranslation,
         Escaper $escaper,
         TransportBuilder $transportBuilder,
-        TimezoneInterface $timezoneInterface
+        TimezoneInterface $timezoneInterface,
+        ScopeConfigInterface $scopeConfig
     ) {
         parent::__construct($context);
         $this->inlineTranslation = $inlineTranslation;
@@ -61,6 +72,32 @@ class Email extends AbstractHelper
         $this->transportBuilder = $transportBuilder;
         $this->logger = $context->getLogger();
         $this->timezoneInterface = $timezoneInterface;
+        $this->scopeConfig = $scopeConfig;
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendername()
+    {
+        return $this->scopeConfig->getValue('trans_email/ident_general/name');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendermail()
+    {
+        return $this->scopeConfig->getValue('trans_email/ident_general/email');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getreceivermail()
+    {
+        return $this->scopeConfig->getValue('trans_email/ident_support/email');
     }
 
     /**
@@ -71,8 +108,8 @@ class Email extends AbstractHelper
         try {
             $this->inlineTranslation->suspend();
             $sender = [
-                'name' => $this->escaper->escapeHtml('Mohamed Ali Jinnah'),
-                'email' => $this->escaper->escapeHtml('mdjinnanec@outlook.com'),
+                'name' => $this->escaper->escapeHtml($this->getSendername()),
+                'email' => $this->escaper->escapeHtml($this->getSendermail()),
             ];
             $transport = $this->transportBuilder
                 ->setTemplateIdentifier('contactus_email_template')
@@ -84,7 +121,7 @@ class Email extends AbstractHelper
                 )
                 ->setTemplateVars($postValue)
                 ->setFromByScope($sender)
-                ->addTo('mdjinnanec@gmail.com')
+                ->addTo($this->getreceivermail())
                 ->getTransport();
             $transport->sendMessage();
             $this->inlineTranslation->resume();

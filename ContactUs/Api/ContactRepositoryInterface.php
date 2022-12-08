@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
 namespace Codem\ContactUs\Api;
 
 use Codem\ContactUs\Api\Data\ContactInterface;
@@ -32,7 +36,6 @@ interface ContactRepositoryInterface
 
     /**
      * Delete ContactUs Data
-     *
      * @param int $entityId
      * @return bool Will returned True if deleted
      * @throws StateException
