@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="form.additional.info">
+            <block class="Magento\Framework\View\Element\Template" name="mobile_number" template="Codem_MobileLogin::form/extra_field.phtml" ifconfig="mobile_login/general/enable"/>
+        </referenceContainer>
+    </body>
+    </page>

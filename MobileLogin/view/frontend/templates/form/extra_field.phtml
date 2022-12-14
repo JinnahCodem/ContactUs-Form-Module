@@ -1,0 +1,27 @@
+<?php declare(strict_types=1);
+
+/*
+ * Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ */
+
+use Magento\Framework\Escaper;
+
+/**
+ * @var $escaper Escaper
+ */
+
+?>
+<legend class="legend"><span><?= $escaper->escapeHtml(__('Additional Information')) ?></span></legend><br>
+<div class="field telephone required">
+    <label class="label" for="telephone"><span><?= $escaper->escapeHtml(__('Mobile Number')) ?></span></label>
+    <div class="control">
+        <input name="mobile_number"
+               id="mobile_number"
+               title="<?= $escaper->escapeHtml(__('Mobile Number')) ?>"
+               value=""
+               class="input-text"
+               type="tel"
+               data-validate="{required:true, 'validate-number':true}"/>
+        <span>Use this on Login alternative to email</span>
+    </div>
+</div>

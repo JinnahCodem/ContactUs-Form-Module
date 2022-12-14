@@ -3,13 +3,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="free_shipping_bar" translate="label" sortOrder="10">
+        <tab id="codem_tab" translate="label" sortOrder="10">
             <label>Codem</label>
         </tab>
         <section id="free_shipping" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Free Shipping Bar</label>
-            <tab>free_shipping_bar</tab>
+            <tab>codem_tab</tab>
             <resource>Codem_FreeShipping::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
