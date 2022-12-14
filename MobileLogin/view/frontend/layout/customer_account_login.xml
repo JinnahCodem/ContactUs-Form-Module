@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Customer Login</title>
+    </head>
+    <body>
+        <referenceBlock name="customer_form_login">
+            <action method="setTemplate" ifconfig="mobile_login/general/enable">
+                <argument name="template" xsi:type="string">Codem_MobileLogin::form/login.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
+
