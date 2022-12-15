@@ -6,8 +6,12 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="form.additional.info">
-            <block class="Magento\Framework\View\Element\Template" name="mobile_number" template="Codem_MobileLogin::form/extra_field.phtml" ifconfig="mobile_login/general/enable"/>
-        </referenceContainer>
+        <referenceBlock name="form_additional_info_customer">
+            <action method="setTemplate" ifconfig="mobile_login/general/enable">
+                <argument name="template" xsi:type="string">Codem_MobileLogin::form/extra_field.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
     </page>
+
+
