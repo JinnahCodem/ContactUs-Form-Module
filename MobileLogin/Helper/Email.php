@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Codem\MobileLogin\Helper;
 
+use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
@@ -111,7 +112,7 @@ class Email extends AbstractHelper
                 ->setTemplateIdentifier($this->getScopeValue(self::XML_PATH_CHANGE_EMAIL_TEMPLATE, $storeId))
                 ->setTemplateOptions(
                     [
-                        'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                        'area' => Area::AREA_FRONTEND,
                         'store' => $storeId
                     ]
                 )
