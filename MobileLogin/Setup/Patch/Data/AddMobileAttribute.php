@@ -84,7 +84,7 @@ class AddMobileAttribute implements DataPatchInterface
                 'type' => 'varchar',
                 'label' => 'Mobile Number',
                 'input' => 'text',
-                'required' => 1,
+                'required' => 0,
                 'visible' => 1,
                 'user_defined' => 1,
                 'sort_order' => 85,
