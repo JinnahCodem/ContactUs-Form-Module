@@ -71,7 +71,7 @@ use Magento\Framework\Escaper;
             <label class="label" for="mobile-number"><span><?= $block->escapeHtml(__('Mobile Number')) ?></span></label>
             <div class="control">
                 <input type="text" name="mobile_number" id="mobile_number" data-input="change-mobile-number"
-                       value="<?= $escaper->escapeHtmlAttr($block->getCustomer()->getCustomAttribute('mobile_number')->getValue()) ?>" title="<?= $escaper->escapeHtmlAttr(__('Mobile Number')) ?>"
+                       value="<?= $escaper->escapeHtmlAttr($block->getCustomer()->getCustomAttribute('mobile_number') ? $block->getCustomer()->getCustomAttribute('mobile_number')->getValue() : '') ?>" title="<?= $escaper->escapeHtmlAttr(__('Mobile Number')) ?>"
                        class="input-text"
                        data-validate="{required:true}"/>
             </div>
