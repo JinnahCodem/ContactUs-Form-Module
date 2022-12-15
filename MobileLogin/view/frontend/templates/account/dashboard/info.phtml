@@ -16,7 +16,7 @@
                 <p>
                     <?= $block->escapeHtml($block->getName()) ?><br>
                     <?= $block->escapeHtml($block->getCustomer()->getEmail()) ?><br>
-                    <?= $block->getCustomer()->getCustomAttribute('mobile_number')->getValue() ?><br>
+                    <?= $block->getCustomer()->getCustomAttribute('mobile_number') ? $block->getCustomer()->getCustomAttribute('mobile_number')->getValue() : ''; ?><br>
                 </p>
                 <?= $block->getChildHtml('customer.account.dashboard.info.extra'); ?>
             </div>

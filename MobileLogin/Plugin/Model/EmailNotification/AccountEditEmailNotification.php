@@ -2,11 +2,11 @@
 
 namespace Codem\MobileLogin\Plugin\Model\EmailNotification;
 
+use Codem\MobileLogin\Helper\Email;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Model\EmailNotification;
 use Magento\Customer\Model\Session as CustomerSession;
-use Codem\MobileLogin\Helper\Email;
 
 /**
  * Class AccountEditEmailNotification Plugin to send mail to customer as per mobile number change validation
@@ -54,8 +54,12 @@ class AccountEditEmailNotification
         $isPasswordChanged = false
     ) {
         $customer = $this->customerSession->getCustomerDataObject();
-        $newMobileNumber = $savedCustomer->getCustomAttribute('mobile_number')->getValue();
-        $oldMobileNumber = $customer->getCustomAttribute('mobile_number')->getValue();
+        $newMobileNumber = $savedCustomer->getCustomAttribute('mobile_number')
+            ? $savedCustomer->getCustomAttribute('mobile_number')->getValue()
+            : '';
+        $oldMobileNumber = $customer->getCustomAttribute('mobile_number')
+            ? $customer->getCustomAttribute('mobile_number')->getValue()
+            : '';
         if ($newMobileNumber != $oldMobileNumber && $origCustomerEmail == $savedCustomer->getEmail() && !$isPasswordChanged) {
             $this->helperEmail->sendEmail($origCustomerEmail, $customer, $savedCustomer->getStoreId());
         }
