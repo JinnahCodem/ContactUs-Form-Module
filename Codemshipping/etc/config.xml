@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <codemshipping>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Codem\Codemshipping\Model\Carrier\Codemshipping</model>
+                <name>Fixed</name>
+                <price>15.00</price>
+                <title>Codem Flat Rate</title>
+                <specificerrmsg>This shipping method is not available right now.</specificerrmsg>
+            </codemshipping>
+        </carriers>
+    </default>
+</config>
