@@ -11,7 +11,7 @@
                 <sallowspecific>0</sallowspecific>
                 <model>Codem\Codemshipping\Model\Carrier\Codemshipping</model>
                 <name>Fixed</name>
-                <price>15.00</price>
+                <price>20.00</price>
                 <title>Codem Flat Rate</title>
                 <specificerrmsg>This shipping method is not available right now.</specificerrmsg>
             </codemshipping>
