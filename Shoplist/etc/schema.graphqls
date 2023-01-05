@@ -1,0 +1,52 @@
+type Query {
+    shoplist : [shoplist] @resolver( class: "Codem\\Shoplist\\Model\\Resolver\\Shoplist") @doc(description: "Get all Shop data.")
+    shoplistByIdentifier(
+        identifier: String! @doc(description: "Specify the identifier of a shop.")
+    ): shoplist @resolver( class: "Codem\\Shoplist\\Model\\Resolver\\ShopsByIdentifier") @doc(description: "Get shop data for the given shop identifier.")
+}
+
+type Mutation {
+   deleteshoplist(input: ShopId!): Deletemessage @resolver(class: "\\Codem\\Shoplist\\Model\\Resolver\\Delete") @doc(description:"Delete shop")
+    updateshoplist(input: ShopListInput!): ShopListOutput @resolver(class: "\\Codem\\Shoplist\\Model\\Resolver\\Update") @doc(description:"Update shop")
+}
+
+input ShopId {
+    shop_id: Int @doc(description: "Shop Id.")
+}
+
+input ShopListInput {
+    shop_id: Int @doc(description: "Shop Id.")
+    shop_name: String  @doc(description: "Name of the shop")
+    identifier: String @doc(description: "Unique identifier of the shop")
+    store_view: [Int!] @doc(description: "Store View of the shop")
+    country: String @doc(description: "Country iso2 code")
+    shop_image: String @doc(description: "Shop Image")
+}
+
+
+type Deletemessage
+{
+    message: String @doc(description: "Shop has been successfully deleted")
+}
+
+type ShopListOutput {
+    success_message: String @doc(description: "Shop has been successfully updated")
+}
+
+
+type shoplist {
+    shop_id: Int @doc(description: "Shop Id.")
+    shop_name: String @doc(description: "Name of the shop")
+    identifier: String @doc(description: "Unique identifier of the shop")
+    store_view: String @doc(description: "Store View of the shop")
+    country: String @doc(description: "Country iso2 code")
+    shop_image: String @doc(description: "Shop Image")
+    created_at: String @doc(description: "Shop created timestamp")
+    updated_at: String @doc(description: "Shop updated timestamp")
+}
+
+
+
+
+
+

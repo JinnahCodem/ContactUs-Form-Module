@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- test api Group -->
+    <route url="/V1/shoplist/:shopId" method="DELETE">
+        <service class="Codem\Shoplist\Api\ShopRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/shoplist/:shopId" method="GET">
+        <service class="Codem\Shoplist\Api\ShopRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/shoplist" method="GET">
+        <service class="Codem\Shoplist\Api\ShopRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/shoplist" method="POST">
+        <service class="Codem\Shoplist\Api\ShopRepositoryInterface" method="updateShop"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

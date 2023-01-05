@@ -1,0 +1,17 @@
+{
+    "shoplist": {
+        "column": {
+            "shop_id": true,
+            "shop_name": true,
+            "identifier": true,
+            "store_view": true,
+            "country": true,
+            "shop_image": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
