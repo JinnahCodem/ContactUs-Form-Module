@@ -9,8 +9,10 @@ namespace Codem\Shoplist\Model\Lists;
 use Codem\Shoplist\Model\Lists;
 use Codem\Shoplist\Model\ResourceModel\Lists\CollectionFactory;
 use Codem\Shoplist\Ui\Component\Listing\Column\Image;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\UrlInterface;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 
@@ -24,6 +26,10 @@ class DataProvider extends AbstractDataProvider
      * @var StoreManagerInterface
      */
     protected $_storeManager;
+    /**
+     * @var Store
+     */
+    protected $store;
 
     /**
      * @param string $name
@@ -40,17 +46,20 @@ class DataProvider extends AbstractDataProvider
         $requestFieldName,
         CollectionFactory $shopCollectionFactory,
         StoreManagerInterface $storeManager,
+        Store $store,
         array $meta = [],
         array $data = []
     ) {
         $this->collection = $shopCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->_storeManager = $storeManager;
+        $this->store = $store;
     }
 
     /**
      * @return array
      * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function getData()
     {
@@ -68,6 +77,18 @@ class DataProvider extends AbstractDataProvider
                 $m[0]['url'] = $this->getMediaUrl() . $lists->getShopImage();
                 $this->loadedData[$lists->getShopId()]['lists']['shop_image'] = $m;
             }
+            $storeView = $this->loadedData[$lists->getShopId()]['lists']['store_view'];
+
+            $storeView = explode(',', $storeView);
+
+            $storeId = [];
+            foreach ($storeView as $storeName) {
+                if ($storeName === "All Store Views") {
+                    $storeName = "Admin";
+                }
+                $storeId[] = $this->store->load($storeName, 'name')->getData('store_id');
+            }
+            $this->loadedData[$lists->getShopId()]['lists']['store_view'] = implode(",", $storeId);
         }
 
         return $this->loadedData;
@@ -81,6 +102,5 @@ class DataProvider extends AbstractDataProvider
     {
         return $this->_storeManager->getStore()
                 ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . Image::IMAGE_PATH;
-
     }
 }
