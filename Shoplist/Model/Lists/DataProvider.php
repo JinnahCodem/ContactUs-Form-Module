@@ -32,11 +32,12 @@ class DataProvider extends AbstractDataProvider
     protected $store;
 
     /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
      * @param CollectionFactory $shopCollectionFactory
      * @param StoreManagerInterface $storeManager
+     * @param Store $store
      * @param array $meta
      * @param array $data
      */
@@ -69,7 +70,11 @@ class DataProvider extends AbstractDataProvider
 
         $items = $this->collection->getItems();
         $this->loadedData = [];
-        /** @var Lists $lists */
+
+        /**
+         * @var Lists $lists
+         */
+
         foreach ($items as $lists) {
             $this->loadedData[$lists->getShopId()]['lists'] = $lists->getData();
             if ($lists->getShopImage()) {
