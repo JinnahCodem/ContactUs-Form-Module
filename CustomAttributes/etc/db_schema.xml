@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright (c) 2023 ReCodem Pvt Ltd All rights reserved
+ -->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"      xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote_address" resource="default" engine="innodb">
+        <column xsi:type="text" name="delivery_note" nullable="true" comment="Delivery Note"/>
+        <column xsi:type="text" name="locality" nullable="true" comment="Locality"/>
+    </table>
+    <table name="sales_order_address" resource="default" engine="innodb">
+        <column xsi:type="text" name="delivery_note" nullable="true" comment="Delivery Note"/>
+        <column xsi:type="text" name="locality" nullable="true" comment="Locality"/>
+    </table>
+    <table name="quote_payment" resource="checkout" engine="innodb">
+        <column xsi:type="text" name="payment_type" nullable="true" comment="Payment Type"/>
+        <column xsi:type="text" name="payment_comment" nullable="true" comment="Payment Comment"/>
+    </table>
+    <table name="sales_order_payment" resource="sales" engine="innodb">
+        <column xsi:type="text" name="payment_type" nullable="true" comment="Payment Type"/>
+        <column xsi:type="text" name="payment_comment" nullable="true" comment="Payment Comment"/>
+    </table>
+</schema>

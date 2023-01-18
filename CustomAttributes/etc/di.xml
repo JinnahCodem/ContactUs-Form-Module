@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright (c) 2023 ReCodem Pvt Ltd All rights reserved
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="codem-custom-field-save-info"
+                type="Codem\CustomAttributes\Plugin\ShippingInformationManagement" sortOrder="1"/>
+    </type>
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="codem-custom-field-payment-info"
+                type="Codem\CustomAttributes\Plugin\PaymentInformationManagement" sortOrder="1"/>
+    </type>
+    <type name="Magento\Checkout\Api\GuestPaymentInformationManagementInterface">
+        <plugin name="codem-custom-field-payment-info-guest"
+                type="Codem\CustomAttributes\Plugin\GuestPaymentInformationManagement" sortOrder="1"/>
+    </type>
+
+</config>
