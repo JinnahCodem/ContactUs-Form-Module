@@ -32,9 +32,9 @@ class DataProvider extends AbstractDataProvider
     protected $store;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $shopCollectionFactory
      * @param StoreManagerInterface $storeManager
      * @param Store $store
@@ -45,22 +45,23 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
+        array $meta = [],
+        array $data = [],
         CollectionFactory $shopCollectionFactory,
         StoreManagerInterface $storeManager,
-        Store $store,
-        array $meta = [],
-        array $data = []
+        Store $store
     ) {
-        $this->collection = $shopCollectionFactory->create();
+
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
+        $this->collection = $shopCollectionFactory->create();
         $this->_storeManager = $storeManager;
         $this->store = $store;
     }
 
     /**
      * @return array
-     * @throws NoSuchEntityException
      * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function getData()
     {
