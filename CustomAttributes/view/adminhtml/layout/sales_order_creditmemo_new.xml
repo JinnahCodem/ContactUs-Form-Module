@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!--
+   Copyright (c) 2022 ReCodem Pvt Ltd All rights reserved
+ -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="sales_order_item_price"/>
+    <body>
+        <referenceBlock name="form">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Codem_CustomAttributes::order/creditmemo/create/form.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

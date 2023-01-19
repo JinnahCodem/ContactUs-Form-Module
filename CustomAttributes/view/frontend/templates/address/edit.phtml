@@ -170,7 +170,10 @@ $regionProvider = $block->getRegionProvider();
             <div class="control">
             <input type="text"
                    name="locality"
-                   value="<?= $escaper->escapeHtmlAttr($block->getAddress()->getCustomAttribute('locality')->getValue()) ?>"
+                   value="<?=
+                   ($block->getAddress()->getCustomAttribute('locality') !== null)
+                       ? ($escaper->escapeHtmlAttr($block->getAddress()->getCustomAttribute('locality')->getValue()))
+                       : ''; ?>"
                    title="<?= $escaper->escapeHtmlAttr(__('Locality')) ?>"
                    id="locality">
             </div>
@@ -183,7 +186,10 @@ $regionProvider = $block->getRegionProvider();
             <div class="control">
             <input type="text"
                    name="delivery_note"
-                   value="<?= $escaper->escapeHtmlAttr($block->getAddress()->getCustomAttribute('delivery_note')->getValue()) ?>"
+                   value="<?=
+                   ($block->getAddress()->getCustomAttribute('delivery_note') !== null)
+                       ? $escaper->escapeHtmlAttr($block->getAddress()->getCustomAttribute('delivery_note')->getValue())
+                       : ''; ?>"
                    title="<?= $escaper->escapeHtmlAttr(__('Delivery Note')) ?>"
                    id="delivery_note">
         </div>
