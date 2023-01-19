@@ -38,6 +38,7 @@ $payment =  $_order->getPayment();
                 <div class="order-payment-currency">
                     <?= $block->escapeHtml(__('The order was placed using %1.', $_order->getOrderCurrencyCode())) ?>
                 </div><br>
+                <!-- Displaying Custom Payment field in Sales Order Payment Information-->
                 <div>
                     <?php if ($payment->getPaymentType() != null) :?>
                     <p><strong>Type : </strong><span><?= $payment->getPaymentType();?></span></p>
