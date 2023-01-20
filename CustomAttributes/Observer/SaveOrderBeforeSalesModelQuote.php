@@ -7,6 +7,7 @@
 namespace Codem\CustomAttributes\Observer;
 
 use Magento\Customer\Api\AddressRepositoryInterface;
+use Magento\Customer\Model\Session;
 use Magento\Framework\DataObject\Copy;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -35,18 +36,26 @@ class SaveOrderBeforeSalesModelQuote implements ObserverInterface
     public $addressRepository;
 
     /**
+     * @var Session
+     */
+    protected $customerSession;
+
+    /**
      * @param Copy $objectCopyService
      * @param LoggerInterface $logger
      * @param AddressRepositoryInterface $addressRepository
+     * @param Session $session
      */
     public function __construct(
         Copy $objectCopyService,
         LoggerInterface $logger,
-        AddressRepositoryInterface $addressRepository
+        AddressRepositoryInterface $addressRepository,
+        Session $session
     ) {
         $this->objectCopyService = $objectCopyService;
         $this->logger = $logger;
         $this->addressRepository = $addressRepository;
+        $this->customerSession = $session;
     }
 
     /**
@@ -63,10 +72,12 @@ class SaveOrderBeforeSalesModelQuote implements ObserverInterface
 
         $payment = $quote->getPayment();
 
-        $cus_shipping_address = $this->addressRepository->getById($shippingAddress->getCustomerAddressId());
-        $cus_shipping_address->setCustomAttribute('delivery_note', $shippingAddress->getDeliveryNote());
-        $cus_shipping_address->setCustomAttribute('locality', $shippingAddress->getLocality());
-        $this->addressRepository->save($cus_shipping_address);
+        if ($this->customerSession->isLoggedIn()) {
+            $cus_shipping_address = $this->addressRepository->getById($shippingAddress->getCustomerAddressId());
+            $cus_shipping_address->setCustomAttribute('delivery_note', $shippingAddress->getDeliveryNote());
+            $cus_shipping_address->setCustomAttribute('locality', $shippingAddress->getLocality());
+            $this->addressRepository->save($cus_shipping_address);
+        }
 
         $this->logger->debug($shippingAddress->getDeliveryNote());
 
